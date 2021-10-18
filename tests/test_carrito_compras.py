@@ -135,6 +135,36 @@ def test_nombre_producto_name_too_long():
             stock=1, 
             description="descripcion")
 
+#11
+@skip_test
+def test_create_product():
+    from module.producto import Producto
+
+    name = "juan"
+    stock=10
+    description= "description"
+
+    crear_producto = Producto.create_product(
+        name=name, 
+        stock=stock, 
+        description=description)
+    
+    assert crear_producto["name"] == name
+    assert crear_producto["stock"] == stock
+    assert crear_producto["description"] == description
+
+#13
+@skip_test
+def test_stock_producto_puede_ser_cero():
+    from module.producto import Producto
+
+    crear_producto = Producto.create_product(
+        name="juan", 
+        stock=0, 
+        description="descripcion")
+    
+    assert crear_producto["stock"] == 0
+
 #15
 @skip_test
 def test_stock_producto_distinto_null():
