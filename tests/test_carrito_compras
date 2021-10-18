@@ -78,7 +78,28 @@ def test_create_carrito():
 
     assert len(carrito) > 0
 
+#6
+@skip_test
+def test_nombre_producto_distinto_null():
+    from module.producto import Producto
 
+    with pytest.raises(ValueError, match="none is not an allowed value"):
+        crear_producto = Producto.create_product(
+            name=None, 
+            stock=1, 
+            description="descripcion")
+
+#7
+@skip_test
+def test_nombre_producto_numerico():
+    from module.producto import Producto
+
+    with pytest.raises(ValueError, match="name can not be an integer"):
+        crear_producto = Producto.create_product(
+            name=11111, 
+            stock=1, 
+            description="descripcion")
+    
 #18
 @skip_test
 def test_descripcion_valido_name_nulo_stock_nulo():
