@@ -16,7 +16,7 @@ def test_create_carrito_quantity_is_cero():
         name=name, 
         stock=stock, 
         description=description)
-    
+            
     assert producto_valido["name"] == name
     assert producto_valido["stock"] == stock
     assert producto_valido["description"] == description
@@ -99,6 +99,30 @@ def test_nombre_producto_numerico():
             name=11111, 
             stock=1, 
             description="descripcion")
+
+
+#15
+@skip_test
+def test_stock_producto_distinto_null():
+    from module.producto import Producto
+
+    with pytest.raises(ValueError, match="none is not an allowed value"):
+        crear_producto = Producto.create_product(
+            name="juan", 
+            stock=None, 
+            description="descripcion")
+
+#17
+@skip_test
+def test_stock_valido_name_nulo_descripcion_nula():
+    from module.producto import Producto
+
+    with pytest.raises(ValueError, match="none is not an allowed value"):
+        crear_producto = Producto.create_product(
+            name=None, 
+            stock=0, 
+            description=None)
+
 
 #18
 @skip_test
