@@ -77,3 +77,45 @@ def test_create_carrito():
     carrito = Carrito.agregar_producto(lista_productos=lista_detalles)
 
     assert len(carrito) > 0
+
+
+#18
+@skip_test
+def test_descripcion_valido_name_nulo_stock_nulo():
+    from module.producto import Producto
+
+    with pytest.raises(ValueError, match="none is not an allowed value"):
+        crear_producto = Producto.create_product(
+            name=None, 
+            stock=None, 
+            description="descripcion")
+
+#19
+@skip_test
+def test_create_detalle_producto():
+    from module.producto import Producto
+    from module.detalleproducto import DetalleProducto
+
+    name = "producto 1"
+    stock=10
+    description= "description"
+
+    producto_valido = Producto.create_product(
+        name=name, 
+        stock=stock, 
+        description=description)
+    
+    assert producto_valido["name"] == name
+    assert producto_valido["stock"] == stock
+    assert producto_valido["description"] == description
+
+    cantidad = 1
+    detalle_producto = DetalleProducto.crear_detalle(
+        cantidad=cantidad,
+        producto= producto_valido
+    )
+
+    assert detalle_producto["cantidad"] == cantidad
+    assert detalle_producto["producto"]["stock"] == stock-cantidad
+
+    
