@@ -16,7 +16,7 @@ def test_create_carrito_quantity_is_cero():
         name=name, 
         stock=stock, 
         description=description)
-    
+            
     assert producto_valido["name"] == name
     assert producto_valido["stock"] == stock
     assert producto_valido["description"] == description
