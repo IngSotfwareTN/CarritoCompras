@@ -78,7 +78,7 @@ def test_create_carrito():
 
     assert len(carrito) > 0
 
-#6
+    #6
 @skip_test
 def test_nombre_producto_distinto_null():
     from module.producto import Producto
@@ -99,7 +99,7 @@ def test_nombre_producto_numerico():
             name=11111, 
             stock=1, 
             description="descripcion")
-    
+
 #18
 @skip_test
 def test_descripcion_valido_name_nulo_stock_nulo():
