@@ -100,6 +100,30 @@ def test_nombre_producto_numerico():
             stock=1, 
             description="descripcion")
 
+
+#15
+@skip_test
+def test_stock_producto_distinto_null():
+    from module.producto import Producto
+
+    with pytest.raises(ValueError, match="none is not an allowed value"):
+        crear_producto = Producto.create_product(
+            name="juan", 
+            stock=None, 
+            description="descripcion")
+
+#17
+@skip_test
+def test_stock_valido_name_nulo_descripcion_nula():
+    from module.producto import Producto
+
+    with pytest.raises(ValueError, match="none is not an allowed value"):
+        crear_producto = Producto.create_product(
+            name=None, 
+            stock=0, 
+            description=None)
+
+
 #18
 @skip_test
 def test_descripcion_valido_name_nulo_stock_nulo():
