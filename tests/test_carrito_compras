@@ -1,0 +1,79 @@
+import pytest
+skip_test = pytest.mark.skipif(False, reason="skip")
+
+#3
+@skip_test
+def test_create_carrito_quantity_is_cero():
+    from module.producto import Producto
+    from module.detalleproducto import DetalleProducto
+    from module.carrito import Carrito
+
+    name = "producto 1"
+    stock= 5
+    description= "description"
+
+    producto_valido = Producto.create_product(
+        name=name, 
+        stock=stock, 
+        description=description)
+    
+    assert producto_valido["name"] == name
+    assert producto_valido["stock"] == stock
+    assert producto_valido["description"] == description
+
+    cantidad = 0
+    with pytest.raises(ValueError, match="cantidad can not be 0"):
+        detalle_producto = DetalleProducto.crear_detalle(
+            cantidad=cantidad,
+            producto= producto_valido
+        )
+
+#5
+@skip_test
+def test_create_carrito():
+    from module.producto import Producto
+    from module.detalleproducto import DetalleProducto
+    from module.carrito import Carrito
+
+    name = "producto 1"
+    stock=10
+    description= "description"
+
+    producto_valido = Producto.create_product(
+        name=name, 
+        stock=stock, 
+        description=description)
+    
+    assert producto_valido["name"] == name
+    assert producto_valido["stock"] == stock
+    assert producto_valido["description"] == description
+
+    producto_valido_2 = Producto.create_product(
+        name=name, 
+        stock=stock, 
+        description=description)
+    
+    assert producto_valido_2["name"] == name
+    assert producto_valido_2["stock"] == stock
+    assert producto_valido_2["description"] == description
+
+    cantidad = 1
+    detalle_producto = DetalleProducto.crear_detalle(
+        cantidad=cantidad,
+        producto= producto_valido
+    )
+
+    assert detalle_producto["cantidad"] == cantidad
+
+    detalle_producto_2 = DetalleProducto.crear_detalle(
+        cantidad=cantidad,
+        producto= producto_valido
+    )
+
+    assert detalle_producto_2["cantidad"] == cantidad
+
+    lista_detalles =[detalle_producto, detalle_producto_2]
+
+    carrito = Carrito.agregar_producto(lista_productos=lista_detalles)
+
+    assert len(carrito) > 0
