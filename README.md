@@ -6,4 +6,4 @@ Dependencias:
 - pydantic for modeling
 
 To run tests:
-  python3 -m pytest tests
+  python3 -m pytest -v tests
