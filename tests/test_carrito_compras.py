@@ -78,7 +78,7 @@ def test_create_carrito():
 
     assert len(carrito) > 0
 
-    #6
+#6
 @skip_test
 def test_nombre_producto_distinto_null():
     from module.producto import Producto
@@ -227,8 +227,8 @@ def test_create_detalle_producto():
     assert detalle_producto["cantidad"] == cantidad
     assert detalle_producto["producto"]["stock"] == stock-cantidad
 
-    #20
-    @skip_test
+#20
+@skip_test
 def test_create_detalle_producto_cantidad_negativa():
     from module.producto import Producto
     from module.detalleproducto import DetalleProducto
